@@ -12,7 +12,13 @@ namespace TaskKeeper
         public string Title { get; set; } = string.Empty;
         public bool IsCompleted { get; set; } = false;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
+        public DateTime? DueDate { get; set; }
         public override string ToString()
-            => (IsCompleted ? "[Выполненна!] " : "[В работе!] ") + Title;
+        {
+            var due = DueDate.HasValue
+                  ? $" (до {DueDate:yyyy-MM-dd})"
+                  : string.Empty;
+            return (IsCompleted ? "[Выполненна] " : "[В работе] ") + Title + due;
+        }
     }
 }

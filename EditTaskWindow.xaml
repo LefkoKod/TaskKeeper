@@ -1,0 +1,57 @@
+﻿<Window x:Class="TaskKeeper.EditTaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Редактировать задачу"
+        Height="200" Width="400"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize">
+
+    <Grid Margin="10">
+        <!-- Определяем три строки -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- 1) Текст задачи -->
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="0"
+                    Margin="0,0,0,10">
+            <Label Content="Текст:"
+                   Width="60"
+                   VerticalAlignment="Center"/>
+            <TextBox x:Name="txtTitle"
+                     Width="300"/>
+        </StackPanel>
+
+        <!-- 2) Дедлайн -->
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="1"
+                    Margin="0,0,0,10">
+            <Label Content="Дедлайн:"
+                   Width="60"
+                   VerticalAlignment="Center"/>
+            <DatePicker x:Name="dpDueDate"
+                        Width="150"/>
+            <CheckBox x:Name="chkNoDue"
+                      Content="Без срока"
+                      Margin="10,0,0,0"/>
+        </StackPanel>
+
+        <!-- 3) Кнопки ОК/Отмена -->
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2"
+                    HorizontalAlignment="Right">
+            <Button Content="OK"
+                    Width="75"
+                    Margin="0,0,5,0"
+                    Click="Ok_Click"/>
+            <Button Content="Отмена"
+                    Width="75"
+                    Click="Cancel_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>
+
+

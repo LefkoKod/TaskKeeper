@@ -47,11 +47,24 @@ namespace TaskKeeper
         {
             if (lstTasks.SelectedItem is TaskItem ti)
             {
-                var res = MessageBox.Show($"Удалить задачу «{ti.Title}»?", "Подтвердите",
-                                          MessageBoxButton.YesNo, MessageBoxImage.Question);
+                var res = MessageBox.Show($"Удалить задачу «{ti.Title}»?", "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question);
                 if (res == MessageBoxResult.Yes)
                 {
                     _manager.Remove(ti.Id);
+                    RefreshList();
+                }
+            }
+        }
+        private void lstTasks_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (lstTasks.SelectedItem is TaskItem item)
+            {
+                var dlg = new EditTaskWindow(item) { Owner = this };
+                if (dlg.ShowDialog() == true)
+                {
+                    item.Title = dlg.TaskTitle;
+                    item.DueDate = dlg.TaskDueDate;
+                    _manager.Update(item);
                     RefreshList();
                 }
             }

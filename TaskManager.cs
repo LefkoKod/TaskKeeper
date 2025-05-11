@@ -38,6 +38,18 @@ namespace TaskKeeper
                 Save();
             }
         }
+        public void Update(TaskItem updated)
+        {
+
+            var index = _tasks.FindIndex(t => t.Id == updated.Id);
+            if (index >= 0)
+            {
+                // Заменяем старый объект на новый
+                _tasks[index] = updated;
+                // Перезаписываем JSON
+                Save();
+            }
+        }
         private List<TaskItem> Load()
         {
             if (!File.Exists(FileName))
